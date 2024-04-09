@@ -7,8 +7,8 @@ const sendEmail = async (email) => {
     var transporter = NodeMailer.createTransport({
         service: "yandex",
         auth: {
-            user: "dogukan.topcu@pialab.com.tr",
-            pass: "3553dogukan."
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_PASSWORD
         }
     });
 
@@ -24,7 +24,7 @@ const sendEmail = async (email) => {
     transporter.use('compile', hbs(handlebarOptions));
 
     var mailOptions = {
-        from: "dogukan.topcu@pialab.com.tr",
+        from: process.env.EMAIL,
         to: email,
         subject: "You’ve been granted Early Access to User Metrics!",
         template: "index",
